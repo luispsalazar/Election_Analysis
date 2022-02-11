@@ -1,7 +1,3 @@
-from concurrent.futures.process import _threads_wakeups
-from xmlrpc.client import boolean
-
-
 name = "Luis"
 country = "Ecuador"
 age = 30
