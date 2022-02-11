@@ -1,9 +1,10 @@
 # Data needed:
-# 1 Total number of votes cast
-# 2 Names of all the candidates
-# 3 Percentage of votes each candidate won
-# 4 Total numbrer of votes for each candidate
-# 5 Winner based on popular vote
+
+# Total number of votes cast
+# Names of all the candidates
+# Percentage of votes each candidate won
+# Total numbrer of votes for each candidate
+# Winner based on popular vote
 
 # Add our dependencies
 import csv
@@ -15,12 +16,19 @@ file_to_load = os.path.join("C:\\Users\\luisp\\Desktop\\Election_Analysis\\Resou
 # Assign a variable to save the file to a path
 file_to_save = os.path.join("C:\\Users\\luisp\\Desktop\\Election_Analysis\\Analysis", "election_analysis.txt")
 
-# 1. Initialize a total vote counter
+# Initialize a total vote counter
 total_votes = 0
+
+# Candidate Options
+candidate_options = []
+
+# Declare the empty dictionary.
+candidate_votes = {}
 
 # Open the election results and read the file
 with open(file_to_load) as election_data:
-#    print(election_data)
+
+#   print(election_data)
     file_reader = csv.reader(election_data)
 
     # Read the header row
@@ -29,10 +37,27 @@ with open(file_to_load) as election_data:
 
 # Print each row in the CSV file
     for row in file_reader:
-        #print(row)
-        
-        # 2. Add to the total vote count.
+                
+        # Add to the total vote count.
         total_votes += 1
+        
+    # Print the candidate name from each row.
+        candidate_name = row[2]
+    
+    # If the candidate does not match any existing candidate...
+        if candidate_name not in candidate_options:
+    
+    # Add the candidate name to the candidate list.
+            candidate_options.append(candidate_name)
+            
+    # Begin tracking that candidate's vote count.
+            candidate_votes[candidate_name] = 0
+    # Add a vote to that candidate's count.
+        candidate_votes[candidate_name] += 1
 
-# 3. Print the total votes
-    print(f"Total votes = ", total_votes)
+# Print the candidate list.
+print(candidate_votes)
+        
+
+# Print the total votes
+print(f"Total votes = ", total_votes)
